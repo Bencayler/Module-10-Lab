@@ -17,20 +17,34 @@ class SinglyLinkedList<T>
      */
     public Node remove(Node head, int k)
     {
+        if (k < 0)
+            return head;
 
-        return head; // TODO: Change
+        if (head == null)
+            return null;
+
+        if (k == 0) {
+            Node remove = head.next;
+            return remove;
+        }
+
+        head.next = remove(head.next, k-1);
+        return head;
     }
 
     /**
      *  inserts node at the beginning of the list
      * @param head the node to start at
-     * @param new_data data to insert into the list
+     * @param newData data to insert into the list
      * @return the new head node containing new_data followed with the rest of the linked list
      */
-    public Node push(Node head, T new_data)
+    public Node push(Node head, T newData)
     {
-
-        return head; // TODO: Change
+        Node nextNode = new Node();
+        nextNode.data = newData;
+        nextNode.next = head;
+        head = nextNode;
+        return head;
     }
 
     /**
@@ -40,7 +54,13 @@ class SinglyLinkedList<T>
      */
     public String toString(Node head)
     {
+        String test = "";
+        while (head!=null)
+        {
+            test += (head.data + " " );
+            head = head.next;
+        }
+        return test;
 
-        return ""; // TODO: Change
     }
 }
